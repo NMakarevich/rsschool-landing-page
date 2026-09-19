@@ -7,6 +7,73 @@
     <title>Coffee House</title>
   </head>
   <body>
+    <header class="header">
+      <div class="container">
+        <section class="header-menu">
+          <div class="header-logo">
+            <a href="index.html" class="header-logo_link">
+              <img class="header-logo_image" src="src/assets/icons/logo.svg" alt="Coffee House Logo">
+            </a>
+          </div>
+          <nav class="header-nav">
+            <ul class="header-nav_list">
+              <li class="header-nav_item">
+                <a href="#favourites" class="header-nav_link">Favourite coffee</a>
+              </li>
+              <li class="header-nav_item">
+                <a href="#about" class="header-nav_link">About</a>
+              </li>
+              <li class="header-nav_item">
+                <a href="#app" class="header-nav_link">Mobile app</a>
+              </li>
+              <li class="header-nav_item">
+                <a href="#contact" class="header-nav_link">Contact us</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="header-actions">
+            <div class="toggle-theme">
+              <span class="toggle-theme_active"></span>
+              <label class="toggle-theme_label" for="light"></label>
+              <label class="toggle-theme_label" for="dark"></label>
+              <input class="toggle-theme_input" type="radio" name="theme" id="light" value="light" checked>
+              <input class="toggle-theme_input" type="radio" name="theme" id="dark" value="dark">
+            </div>
+            <div class="link-container">
+              <a class="link" href="">Menu
+                <span class="link-icon_wrapper">
+                  <img class="link-icon" src="src/assets/icons/coffee-cup.svg" alt="Coffee Icon">
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+        <section class="header-content">
+          <div class="header-content_container">
+            <h1 class="header-content_title">
+              <span class="title-accent">Enjoy</span> premium coffee at our charming cafe
+            </h1>
+            <p class="header-content_description">
+              With its inviting atmosphere and delicious coffee options, the Coffee House Resource
+              is a popular destination for coffee lovers and those seeking a warm and inviting space
+              to enjoy their favorite beverage.
+            </p>
+            <a class="link-button button-primary" href="">
+              Menu
+              <span class="link-button_hover link-icon_wrapper">
+                  <img class="link-icon" src="src/assets/icons/coffee-cup.svg" alt="Coffee Icon">
+              </span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </header>
+    <main class="main">
+      <div class="container"></div>
+    </main>
+    <footer class="footer">
+      <div class="container"></div>
+    </footer>
     <script src="script.js" type="module"></script>
   </body>
 </html>
