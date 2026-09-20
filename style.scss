@@ -344,13 +344,13 @@ body {
     }
 
     .column:first-child {
-      .image-wrapper:first-child {
+      .image-wrapper:nth-child(2n+1) {
         height: 590px;
       }
     }
 
     .column:last-child {
-      .image-wrapper:last-child {
+      .image-wrapper:nth-child(2n) {
         height: 590px;
       }
     }
@@ -358,8 +358,6 @@ body {
     .image-wrapper {
       width: 100%;
       display: flex;
-      justify-content: center;
-      align-items: center;
       border-radius: 20px;
       overflow: hidden;
     }
