@@ -145,6 +145,7 @@ body {
 }
 
 .toggle-theme {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -207,6 +208,8 @@ body {
   overflow: hidden;
   background-image: url("src/assets/images/img-hero.jpg");
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   &_container {
     max-width: 530px;
