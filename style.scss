@@ -159,14 +159,12 @@ body {
   border: 1px solid var(--border-primary);
   border-radius: 100px;
 
-  &_active {
-    position: absolute;
-    display: flex;
-    width: 36px;
-    height: 36px;
-    background-color: var(--text-accent);
-    border-radius: 50%;
-    transition: all 0.4s
+  #light:not(:checked) ~ [for="light"]:hover {
+    background-color: var(--bg-container);
+  }
+
+  #dark:not(:checked) ~ [for="dark"]:hover {
+    background-color: var(--bg-container);
   }
 
   &_label {
@@ -177,7 +175,19 @@ body {
     height: 36px;
     line-height: 0;
     z-index: 10;
+    border-radius: 50%;
     cursor: pointer;
+    transition: background-color 0.4s;
+  }
+
+  &_active {
+    position: absolute;
+    display: flex;
+    width: 36px;
+    height: 36px;
+    background-color: var(--text-accent);
+    border-radius: 50%;
+    transition: all 0.4s
   }
 
   &_input {
@@ -187,11 +197,11 @@ body {
     appearance: none;
   }
 
-  #light:checked + &_active {
-    transform: translateX(4px);
+  #light:checked ~ &_active {
+    transform: translateX(0px);
   }
 
-  #dark:checked + &_active {
+  #dark:checked ~ &_active {
     transform: translateX(42px);
   }
 }
