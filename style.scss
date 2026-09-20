@@ -73,7 +73,9 @@ body {
 }
 
 .link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   position: relative;
   color: var(--text-primary);
   font-size: var(--link-button-size);
@@ -111,6 +113,7 @@ body {
 }
 
 .header-logo {
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
