@@ -322,3 +322,57 @@ body {
     }
   }
 }
+
+#about {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .column:first-child {
+      .image-wrapper:first-child {
+        height: 590px;
+      }
+    }
+
+    .column:last-child {
+      .image-wrapper:last-child {
+        height: 590px;
+      }
+    }
+
+    .image-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .image-wrapper {
+      height: 430px;
+    }
+
+    &-image {
+      width: 100%;
+      object-fit: cover;
+      transform: scale(1.1);
+      transition: transform 0.4s;
+
+      &:hover {
+        transform: scale(1);
+      }
+    }
+  }
+}
