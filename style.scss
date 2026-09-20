@@ -36,6 +36,10 @@ h3 {
   line-height: var(--h3-line-height);
 }
 
+ul {
+  list-style: none;
+}
+
 .title-accent {
   color: var(--text-accent);
   font-style: italic;
@@ -124,7 +128,6 @@ body {
   &_list {
     display: flex;
     gap: 40px;
-    list-style: none;
   }
 }
 
