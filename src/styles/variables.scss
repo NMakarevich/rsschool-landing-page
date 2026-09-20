@@ -119,6 +119,17 @@ $h2-mobile-line-height: 125%;
   --link-button-line-height: #{$link-button-desktop-line-height};
 }
 
+@media (max-width: 640px) {
+  :root {
+    --h1-size: #{$h1-mobile-size};
+    --h1-weight: #{$h1-mobile-size};
+    --h1-line-height: #{$h1-mobile-line-height};
+    --h2-size: #{$h2-mobile-size};
+    --h2-weight: #{$h2-mobile-weight};
+    --h2-line-height: #{$h2-mobile-line-height};
+  }
+}
+
 @media (max-width: $mobile) {
   :root {
     --h1-size: #{$h1-mobile-size};

@@ -200,7 +200,6 @@ body {
 
 .header-content {
   width: 100%;
-  height: 644px;
   padding: 100px;
   display: flex;
   flex-direction: column;
@@ -215,6 +214,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 40px;
   }
 
   &_title {
@@ -261,7 +261,6 @@ body {
 
   .slider {
     width: 100%;
-    height: 684px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -296,26 +295,35 @@ body {
     &-inner {
       position: relative;
       width: 100%;
-      height: 100%;
       overflow: hidden;
     }
 
     .slides-list {
-      position: absolute;
+      width: 100%;
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
       width: 100%;
 
-      &_item {
+      &_image {
+        max-width: 480px;
+        width: 100%;
+        height: auto;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      &_info {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-
-        &_info {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 16px;
-        }
+        gap: 16px;
       }
     }
 
@@ -612,6 +620,10 @@ body {
     }
   }
 
+  .header-content {
+    padding: 100px 60px;
+  }
+
   #favourites {
     .section-title {
       text-align: center;
@@ -644,6 +656,20 @@ body {
   }
 }
 
+@media (max-width: 640px) {
+  .header-content {
+    padding: 60px;
+  }
+
+  #favourites {
+    .slider {
+      &_control {
+        display: none;
+      }
+    }
+  }
+}
+
 @media (max-width: $mobile) {
   .container {
     padding: 16px;
@@ -655,6 +681,24 @@ body {
 
       &_list {
         gap: 60px;
+      }
+    }
+
+    .link-menu {
+      display: flex;
+      gap: 16px;
+
+      .link-icon_wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+
+        .link-icon {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
 
@@ -675,11 +719,6 @@ body {
 
   #favourites {
     .slider {
-      height: 576px;
-
-      &_control {
-        display: none;
-      }
 
       .image-wrapper {
         width: 348px;
