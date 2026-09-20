@@ -8,6 +8,8 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0;
 }
 
 html,
@@ -300,8 +302,6 @@ body {
         }
       }
     }
-
-
 
     &-controls {
       display: flex;
