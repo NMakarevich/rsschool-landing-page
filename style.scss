@@ -380,3 +380,55 @@ body {
     }
   }
 }
+
+#app {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .app-column {
+    max-width: 630px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .app-image {
+    width: 100%;
+    max-height: 630px;
+    height: auto;
+  }
+
+  .downloads-list {
+    display: flex;
+    gap: 20px;
+
+    &_item {
+      width: 200px;
+    }
+
+    .link-button {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      width: 100%;
+      border: 1px solid var(--border-primary);
+      border-radius: 100px;
+      transition: all 0.4s;
+
+      &_caption {
+        font-size: var(--caption-size);
+        font-weight: var(--caption-weight);
+        line-height: var(--caption-line-height);
+      }
+
+      &:hover {
+        background-color: var(--bg-container);
+        color: var(--text-inverse);
+      }
+    }
+  }
+}
