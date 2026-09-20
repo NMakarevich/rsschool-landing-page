@@ -87,6 +87,9 @@ $text-desktop-line-height: 150%;
 $caption-desktop-size: 10px;
 $caption-desktop-weight: 600;
 $caption-desktop-line-height: 140%;
+$link-button-desktop-size: 16px;
+$link-button-desktop-weight: 600;
+$link-button-desktop-line-height: 150%;
 
 $h1-mobile-size: 42px;
 $h1-mobile-weight: 600;
@@ -111,6 +114,9 @@ $h2-mobile-line-height: 125%;
   --caption-size: #{$caption-desktop-size};
   --caption-weight: #{$caption-desktop-weight};
   --caption-line-height: #{$caption-desktop-line-height};
+  --link-button-size: #{$link-button-desktop-size};
+  --link-button-weight: #{$link-button-desktop-weight};
+  --link-button-line-height: #{$link-button-desktop-line-height};
 }
 
 @media (max-width: $mobile) {

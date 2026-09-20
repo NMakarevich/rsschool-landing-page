@@ -76,7 +76,9 @@ body {
   display: block;
   position: relative;
   color: var(--text-primary);
-  font-size: 24px;
+  font-size: var(--link-button-size);
+  font-weight: var(--link-button-weight);
+  line-height: var(--link-button-line-height);
   text-decoration: none;
 
   &-text::after {
@@ -218,7 +220,6 @@ body {
     align-items: center;
     gap: 8px;
     padding: 20px 78px;
-    font-size: var(--text-size);
     background-color: var(--bg-color);
     border-radius: 100px;
 
