@@ -133,22 +133,7 @@ body {
     }
 
     .load-more {
-      flex-shrink: 0;
       display: none;
-      justify-content: center;
-      align-items: center;
-      width: 60px;
-      height: 60px;
-      background-color: transparent;
-      border: 1px solid var(--border-primary);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: all 0.4s;
-
-      &:hover {
-        background-color: var(--bg-container);
-        color: var(--text-inverse);
-      }
     }
   }
 }
