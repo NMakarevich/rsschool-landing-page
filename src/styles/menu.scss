@@ -1,10 +1,22 @@
 @import "variables.scss";
 
+body {
+  gap: 20px;
+}
+
+.main {
+  margin-bottom: 80px;
+}
+
 #menu {
   display: flex;
   flex-direction: column;
   gap: 40px;
   width: 100%;
+
+  .visually-hidden {
+    display: none;
+  }
 
   .section-title {
     align-self: center;
