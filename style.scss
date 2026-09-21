@@ -116,6 +116,7 @@ body {
   &:hover {
     background-color: var(--bg-container);
     color: var(--text-inverse);
+    border-color: var(--bg-container);
   }
 }
 
@@ -179,12 +180,22 @@ body {
   border: 1px solid var(--border-primary);
   border-radius: 100px;
 
+  #light:checked ~ [for="light"] {
+    color: var(--text-inverse);
+  }
+
+  #dark:checked ~ [for="dark"] {
+    color: var(--text-inverse);
+  }
+
   #light:not(:checked) ~ [for="light"]:hover {
     background-color: var(--bg-container);
+    color: var(--text-inverse);
   }
 
   #dark:not(:checked) ~ [for="dark"]:hover {
     background-color: var(--bg-container);
+    color: var(--text-inverse);
   }
 
   &_label {
@@ -454,9 +465,7 @@ body {
       gap: 8px;
       padding: 12px 20px;
       width: 100%;
-      border: 1px solid var(--border-inverse);
       border-radius: 100px;
-      transition: all 0.4s;
 
       .link-icon_wrapper {
         line-height: 0;
@@ -511,6 +520,7 @@ body {
       &:hover {
         background-color: var(--bg-color);
         color: var(--text-primary);
+        border-color: var(--bg-color);
       }
     }
 

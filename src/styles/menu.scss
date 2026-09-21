@@ -67,6 +67,7 @@ body {
     &:hover {
       background-color: var(--bg-container);
       color: var(--text-inverse);
+      border-color: var(--bg-container);
 
       .tab-control_emoji {
         background-color: var(--bg-color);
