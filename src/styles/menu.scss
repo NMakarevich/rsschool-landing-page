@@ -1,0 +1,64 @@
+@import "variables.scss";
+
+#menu {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+
+  .section-title {
+    align-self: center;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    &-controls {
+      align-self: center;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+  }
+
+  .tab-control {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px 8px 8px;
+    border: 1px solid var(--border-primary);
+    border-radius: 100px;
+    font-size: var(--link-button-size);
+    font-weight: var(--link-button-weight);
+    line-height: var(--link-button-line-height);
+    cursor: pointer;
+    transition: all 0.4s;
+
+    &_emoji {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      background-color: var(--border-primary);
+      border-radius: 50%;
+      transition: background-color 0.4s;
+    }
+
+    &.active,
+    &:hover {
+      background-color: var(--bg-container);
+      color: var(--text-inverse);
+
+      .tab-control_emoji {
+        background-color: var(--bg-color);
+      }
+    }
+  }
+}
