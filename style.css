@@ -125,12 +125,16 @@ ul {
 body {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 20px;
   background-color: var(--bg-color);
   color: var(--text-primary);
   font-size: var(--text-size);
   font-weight: var(--text-weight);
   line-height: var(--text-line-height);
+}
+
+.main {
+  margin-bottom: 80px;
 }
 
 .header,
@@ -302,7 +306,12 @@ body {
   display: none;
 }
 
-.header-content {
+.main .container {
+  flex-direction: column;
+  gap: 100px;
+}
+
+.hero-content {
   width: 100%;
   padding: 100px;
   display: flex;
@@ -314,7 +323,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.header-content_container {
+.hero-content_container {
   max-width: 530px;
   height: 100%;
   display: flex;
@@ -322,13 +331,13 @@ body {
   justify-content: space-between;
   gap: 40px;
 }
-.header-content_title {
+.hero-content_title {
   color: var(--text-inverse);
 }
-.header-content_description {
+.hero-content_description {
   color: var(--text-inverse);
 }
-.header-content .link-button {
+.hero-content .link-button {
   align-self: flex-start;
   display: flex;
   justify-content: center;
@@ -338,18 +347,13 @@ body {
   background-color: var(--bg-color);
   border-radius: 100px;
 }
-.header-content .link-button_hover {
+.hero-content .link-button_hover {
   line-height: 0;
   opacity: 0;
   transition: opacity 0.4s;
 }
-.header-content .link-button:hover .link-button_hover {
+.hero-content .link-button:hover .link-button_hover {
   opacity: 1;
-}
-
-.main .container {
-  flex-direction: column;
-  gap: 100px;
 }
 
 #favourites {
@@ -648,7 +652,7 @@ body {
     transform: translateY(0) rotate(-45deg);
   }
 
-  .header-content {
+  .hero-content {
     padding: 100px 60px;
   }
 
@@ -674,7 +678,7 @@ body {
   }
 }
 @media (max-width: 640px) {
-  .header-content {
+  .hero-content {
     padding: 32px;
   }
 
@@ -721,7 +725,7 @@ body {
     gap: 12px;
   }
 
-  .header-content {
+  .hero-content {
     padding: 60px 16px;
     height: 552px;
   }

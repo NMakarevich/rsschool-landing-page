@@ -77,14 +77,6 @@
     --h2-line-height: 125%;
   }
 }
-body {
-  gap: 20px;
-}
-
-.main {
-  margin-bottom: 80px;
-}
-
 #menu {
   display: flex;
   flex-direction: column;
