@@ -491,6 +491,7 @@ body {
     gap: 12px;
 
     &_item {
+      flex-shrink: 0;
       width: 60px;
       height: 60px;
     }
@@ -541,6 +542,16 @@ body {
   }
 }
 
+@media (max-width: 860px) {
+  .header-nav_list {
+    gap: 12px;
+  }
+
+  .header-actions {
+    gap: 12px;
+  }
+}
+
 @media (max-width: $tablet) {
   .header-section.menu {
     position: relative;
@@ -580,6 +591,10 @@ body {
     .link-menu {
       display: block;
     }
+  }
+
+  .header-actions {
+    gap: 24px;
   }
 
   .menu-container {
@@ -678,6 +693,11 @@ body {
       }
     }
   }
+
+  #contact {
+    padding: 60px 16px;
+    gap: 40px;
+  }
 }
 
 @media (max-width: $mobile) {
@@ -758,10 +778,5 @@ body {
     .downloads-list {
       flex-direction: column;
     }
-  }
-
-  #contact {
-    padding: 60px 16px;
-    gap: 40px;
   }
 }
