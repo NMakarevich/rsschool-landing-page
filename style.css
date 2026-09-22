@@ -613,6 +613,10 @@ body {
   .header-nav .link-menu {
     display: block;
   }
+  .header-nav .link-menu svg {
+    width: 80%;
+    height: 80%;
+  }
   .header-nav .link-text {
     font-size: 32px;
     line-height: 125%;

@@ -614,6 +614,11 @@ body {
 
     .link-menu {
       display: block;
+
+      svg {
+        width: 80%;
+        height: 80%;
+      }
     }
 
     .link-text {
