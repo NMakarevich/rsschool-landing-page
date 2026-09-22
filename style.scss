@@ -337,6 +337,11 @@ body {
 
     .slides-list {
       width: 100%;
+
+      &_item {
+        display: flex;
+        justify-content: center;
+      }
     }
 
     &-item {
@@ -344,10 +349,10 @@ body {
       flex-direction: column;
       align-items: center;
       gap: 20px;
+      max-width: 480px;
       width: 100%;
 
       &_image {
-        max-width: 480px;
         width: 100%;
         height: auto;
 
@@ -361,6 +366,10 @@ body {
         flex-direction: column;
         align-items: center;
         gap: 16px;
+      }
+
+      &_description {
+        text-align: center;
       }
     }
 
@@ -606,6 +615,11 @@ body {
     .link-menu {
       display: block;
     }
+
+    .link-text {
+      font-size: $link-button-tablet-size;
+      line-height: $link-button-tablet-line-height;
+    }
   }
 
   .header-actions {
@@ -664,6 +678,12 @@ body {
     padding: 100px 60px;
   }
 
+  #favourites {
+    .slider-item {
+      max-width: 488px;
+    }
+  }
+
   #about {
     .gallery {
       grid-template-columns: 1fr;
@@ -711,7 +731,7 @@ body {
 
 @media (max-width: $mobile) {
   .container {
-    padding: 16px;
+    padding: 0 16px;
   }
 
   .header-section.menu {
@@ -741,11 +761,6 @@ body {
       }
     }
 
-    .link-text {
-      font-size: 32px;
-      line-height: 125%;
-    }
-
     .header-actions {
       gap: 12px;
     }
@@ -759,9 +774,11 @@ body {
   #favourites {
     .slider {
 
+      .slider-item {
+        max-width: 348px;
+      }
+
       .image-wrapper {
-        width: 348px;
-        height: 348px;
 
         img {
           width: 100%;
