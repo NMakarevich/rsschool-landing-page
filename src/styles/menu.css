@@ -70,7 +70,7 @@
 @media (max-width: 380px) {
   :root {
     --h1-size: 42px;
-    --h1-weight: 42px;
+    --h1-weight: 600;
     --h1-line-height: 115%;
     --h2-size: 32px;
     --h2-weight: 600;

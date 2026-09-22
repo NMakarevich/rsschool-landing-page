@@ -138,7 +138,7 @@ $h2-mobile-line-height: 125%;
 @media (max-width: $mobile) {
   :root {
     --h1-size: #{$h1-mobile-size};
-    --h1-weight: #{$h1-mobile-size};
+    --h1-weight: #{$h1-mobile-weight};
     --h1-line-height: #{$h1-mobile-line-height};
     --h2-size: #{$h2-mobile-size};
     --h2-weight: #{$h2-mobile-weight};
