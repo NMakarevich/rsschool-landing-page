@@ -104,7 +104,7 @@
           <h2 class="section-title">Choose your <span class="title-accent">favorite</span> coffee</h2>
           <div class="slider">
             <div class="slider-wrapper">
-              <button class="slider_control button-secondary">
+              <button class="slider_control button-secondary prev">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18.5 12H6M12 18L6 12L12 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -126,16 +126,16 @@
                   </li>
                 </ul>
               </div>
-              <button class="slider_control button-secondary">
+              <button class="slider_control button-secondary next">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6 12H18.5M12.5 18L18.5 12L12.5 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </button>
             </div>
-            <ul class="slider-controls">
-              <li class="slider-control active"></li>
-              <li class="slider-control"></li>
-              <li class="slider-control"></li>
+            <ul class="slider-controls slider-markers">
+              <li class="slider-control slider-marker active" data-slide="1"></li>
+              <li class="slider-control slider-marker" data-slide="2"></li>
+              <li class="slider-control slider-marker" data-slide="3"></li>
             </ul>
           </div>
         </section>
@@ -302,5 +302,6 @@
     </footer>
     <script src="./src/scripts/theme.js" type="module"></script>
     <script src="./src/scripts/burger.js" type="module"></script>
+    <script src="./src/scripts/slider.js" type="module"></script>
   </body>
 </html>
