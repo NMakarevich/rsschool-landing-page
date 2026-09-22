@@ -164,7 +164,7 @@ body {
   line-height: var(--link-button-line-height);
   text-decoration: none;
 }
-.link-text::after {
+.link-text::after, .link-text.active::after {
   position: absolute;
   bottom: -8px;
   content: "";
@@ -174,7 +174,7 @@ body {
   background-color: var(--text-primary);
   transition: width 0.4s;
 }
-.link-text:hover::after {
+.link-text:hover::after, .link-text.active::after {
   width: 100%;
 }
 
