@@ -338,11 +338,16 @@ body {
     }
 
     .slides-list {
-      width: 100%;
+      display: flex;
 
       &_item {
         display: flex;
         justify-content: center;
+        width: 100%;
+      }
+
+      &.transition {
+        transition: transform 0.4s;
       }
     }
 
@@ -387,8 +392,10 @@ body {
       height: 4px;
       background-color: var(--border-primary);
       cursor: pointer;
+      transition: background-color 0.4s;
 
-      &.active {
+      &.active,
+      &:hover {
         background-color: var(--bg-container);
       }
     }

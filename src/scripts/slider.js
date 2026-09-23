@@ -1,21 +1,12 @@
 import items from '../data/slides.json';
 
 let currentSlide = 1;
-const prevSlideButton = document.querySelector('.slider_control.prev');
-const nextSlideButton = document.querySelector('.slider_control.next');
-const sliderMarkers = document.querySelector('.slider-markers');
+
 const slidesList = document.querySelector('.slides-list');
+const sliderInner = document.querySelector('.slider-inner');
+const markersContainer = document.querySelector('.slider-markers');
 
-function prevSlide() {}
-
-function nextSlide() {}
-
-function selectSlide(slideIndex) {}
-
-prevSlideButton.addEventListener('click', prevSlide);
-nextSlideButton.addEventListener('click', nextSlide);
-
-function getSlideItem(item) {
+function createSlideItem(item) {
   const element = document.createElement('li');
   element.classList.add('slides-list_item');
   element.innerHTML = `<div class="slider-item">
@@ -30,3 +21,87 @@ function getSlideItem(item) {
                       </div>`;
   return element;
 }
+
+function createMarker(index) {
+  const marker = document.createElement('li');
+  marker.classList.add('slider-control', 'slider-marker');
+  if (index === currentSlide) {
+    marker.classList.add('active');
+  }
+  marker.dataset.slide = index;
+  return marker;
+}
+
+function renderSlider() {
+  const slides = [items[items.length - 1], ...items, items[0]];
+  slidesList.style.width = `${slides.length * 100}%`;
+  slidesList.append(...slides.map((slide) => createSlideItem(slide)));
+  slidesList.style.transform = `translateX(-${sliderInner.offsetWidth * currentSlide}px)`;
+
+  for (let i = 1; i <= items.length; i++) {
+    markersContainer.appendChild(createMarker(i));
+  }
+}
+
+const prevSlideButton = document.querySelector('.slider_control.prev');
+const nextSlideButton = document.querySelector('.slider_control.next');
+
+let disableSlider = false;
+
+function prevSlide() {
+  if (disableSlider) return;
+  disableSlider = true;
+  deleteActiveClass();
+  currentSlide -= 1;
+  slidesList.classList.add('transition');
+  slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
+}
+
+function nextSlide() {
+  if (disableSlider) return;
+  disableSlider = true;
+  deleteActiveClass();
+  currentSlide += 1;
+  slidesList.classList.add('transition');
+  slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
+}
+
+function deleteActiveClass() {
+  markersContainer.querySelector(`[data-slide="${currentSlide}"]`).classList.remove('active');
+}
+
+function selectSlide(event) {
+  const { target } = event;
+  if (target.tagName !== 'LI') return;
+
+  disableSlider = true;
+  deleteActiveClass();
+  currentSlide = Number(target.dataset.slide);
+  slidesList.classList.add('transition');
+  slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
+}
+
+function handleTransitionStart() {
+  const index =
+    currentSlide === 0 ? items.length : currentSlide === items.length + 1 ? 1 : currentSlide;
+  markersContainer.querySelector(`[data-slide="${index}"]`).classList.add('active');
+}
+
+function handleTransitionEnd() {
+  slidesList.classList.remove('transition');
+  if (currentSlide === 0) {
+    currentSlide = items.length;
+  } else if (currentSlide === items.length + 1) {
+    currentSlide = 1;
+  }
+  slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
+  disableSlider = false;
+}
+
+renderSlider();
+
+prevSlideButton.addEventListener('click', prevSlide);
+nextSlideButton.addEventListener('click', nextSlide);
+markersContainer.addEventListener('click', selectSlide);
+slidesList.addEventListener('transitionstart', handleTransitionStart);
+slidesList.addEventListener('transitionend', handleTransitionEnd);

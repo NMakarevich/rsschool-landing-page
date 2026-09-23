@@ -15,7 +15,7 @@
 :root {
   --bg-color: #E1D4C9;
   --bg-container: #665F55;
-  --bg-overlay: rgba(64, 63, 61, 0.8);
+  --bg-overlay: #403F3DCC;
   --text-primary: #403F3D;
   --text-accent: #B0907A;
   --text-inverse: #E1D4C9;
@@ -27,7 +27,7 @@
 .dark {
   --bg-color: #292826;
   --bg-container: #403F3D;
-  --bg-overlay: rgba(41, 40, 38, 0.8);
+  --bg-overlay: #292826CC;
   --text-primary: #E1D4C9;
   --text-accent: #B0907A;
   --text-inverse: #E1D4C9;
@@ -384,11 +384,15 @@ body {
   overflow: hidden;
 }
 #favourites .slider .slides-list {
-  width: 100%;
+  display: flex;
 }
 #favourites .slider .slides-list_item {
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+#favourites .slider .slides-list.transition {
+  transition: transform 0.4s;
 }
 #favourites .slider-item {
   display: flex;
@@ -425,8 +429,9 @@ body {
   height: 4px;
   background-color: var(--border-primary);
   cursor: pointer;
+  transition: background-color 0.4s;
 }
-#favourites .slider-control.active {
+#favourites .slider-control.active, #favourites .slider-control:hover {
   background-color: var(--bg-container);
 }
 
@@ -574,6 +579,7 @@ body {
   .header-nav_list {
     gap: 12px;
   }
+
   .header-actions {
     gap: 12px;
   }
@@ -582,6 +588,7 @@ body {
   .header-section.menu {
     position: relative;
   }
+
   .header-nav {
     position: fixed;
     height: 924px;
@@ -629,9 +636,11 @@ body {
     font-size: 32px;
     line-height: 125%;
   }
+
   .header-actions {
     gap: 24px;
   }
+
   .menu-container .link {
     display: none;
   }
@@ -670,15 +679,18 @@ body {
   .menu-container .burger-menu.open::after {
     transform: translateY(0) rotate(-45deg);
   }
+
   .hero-content {
     padding: 100px 60px;
   }
   .hero-content .link-icon_wrapper {
     opacity: 1;
   }
+
   #favourites .slider-item {
     max-width: 488px;
   }
+
   #about .gallery {
     grid-template-columns: 1fr;
   }
@@ -688,10 +700,12 @@ body {
   #about .gallery .column:last-child .image-wrapper:not(:nth-child(2n)) {
     display: none;
   }
+
   #app {
     flex-direction: column;
     gap: 100px;
   }
+
   #contact {
     padding: 100px 60px;
     flex-direction: column;
@@ -702,9 +716,11 @@ body {
   .hero-content {
     padding: 32px;
   }
+
   #favourites .slider_control {
     display: none;
   }
+
   #contact {
     padding: 60px 16px;
     gap: 40px;
@@ -714,6 +730,7 @@ body {
   .container {
     padding: 0 16px;
   }
+
   .header-section.menu .header-nav {
     padding: 60px 16px;
   }
@@ -738,10 +755,12 @@ body {
   .header-section.menu .header-actions {
     gap: 12px;
   }
+
   .hero-content {
     padding: 60px 16px;
     height: 552px;
   }
+
   #favourites .slider .slider-item {
     max-width: 348px;
   }
@@ -757,6 +776,7 @@ body {
     align-items: center;
     gap: 16px;
   }
+
   #app {
     gap: 40px;
   }
