@@ -604,10 +604,12 @@ body {
     z-index: 100;
     background-color: var(--bg-color);
     transform: translateX(-1000px);
-    transition: transform 0.4s;
   }
   .header-nav.open {
     transform: translateX(0);
+  }
+  .header-nav.transition {
+    transition: transform 0.4s;
   }
   .header-nav_list {
     flex-direction: column;

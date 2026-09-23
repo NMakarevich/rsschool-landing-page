@@ -605,10 +605,13 @@ body {
     z-index: 100;
     background-color: var(--bg-color);
     transform: translateX(-1000px);
-    transition: transform 0.4s;
 
     &.open {
       transform: translateX(0);
+    }
+
+    &.transition {
+      transition: transform 0.4s;
     }
 
     &_list {
