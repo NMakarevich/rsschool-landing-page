@@ -614,8 +614,17 @@ body {
       display: flex;
     }
 
-    .link-menu {
-      display: block;
+    .link.link-menu {
+      display: flex;
+      align-items: center;
+
+      .link-icon_wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+      }
 
       svg {
         width: 80%;
@@ -683,6 +692,10 @@ body {
 
   .hero-content {
     padding: 100px 60px;
+
+    .link-icon_wrapper {
+      opacity: 1;
+    }
   }
 
   #favourites {
