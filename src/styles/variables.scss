@@ -1,0 +1,148 @@
+@use "sass:meta";
+
+// screen breakpoints
+$desktop: 1440px;
+$tablet: 768px;
+$mobile: 380px;
+
+:root {
+  --container-width: #{$desktop};
+}
+
+@media (max-width: $tablet) {
+  :root {
+    --container-width: #{$tablet};
+  }
+}
+
+@media (max-width: $mobile) {
+  :root {
+    --container-width: #{$mobile};
+  }
+}
+
+// logo light theme
+$logo-url-light: url("src/assets/icons/logo-light.svg");
+
+// logo dark theme
+$logo-url-dark: url("src/assets/icons/logo-dark.svg");
+
+// colors light theme
+$text-primary-light: #403F3D;
+$text-inverse-light: #E1D4C9;
+$text-accent-light: #B0907A;
+$bg-page-light: #E1D4C9;
+$bg-container-light: #665F55;
+$bg-overlay-light: #403F3DCC;
+$border-primary-light: #C1B6AD;
+$border-inverse-light: #665F55;
+
+// colors dark theme
+$text-primary-dark: #E1D4C9;
+$text-inverse-dark: #E1D4C9;
+$text-accent-dark: #B0907A;
+$bg-page-dark: #292826;
+$bg-container-dark: #403F3D;
+$bg-overlay-dark: #292826CC;
+$border-primary-dark: #665F55;
+$border-inverse-dark: #C1B6AD;
+
+:root {
+  --bg-color: #{$bg-page-light};
+  --bg-container: #{$bg-container-light};
+  --bg-overlay: #{$bg-overlay-light};
+  --text-primary: #{$text-primary-light};
+  --text-accent: #{$text-accent-light};
+  --text-inverse: #{$text-inverse-light};
+  --border-primary: #{$border-primary-light};
+  --border-inverse: #{$border-inverse-light};
+  --logo-url: #{$logo-url-light};
+}
+
+.dark {
+  --bg-color: #{$bg-page-dark};
+  --bg-container: #{$bg-container-dark};
+  --bg-overlay: #{$bg-overlay-dark};
+  --text-primary: #{$text-primary-dark};
+  --text-accent: #{$text-accent-dark};
+  --text-inverse: #{$text-inverse-dark};
+  --border-primary: #{$border-primary-dark};
+  --border-inverse: #{$border-inverse-dark};
+  --logo-url: #{$logo-url-dark};
+}
+
+// fonts
+$h1-desktop-size: 72px;
+$h1-desktop-weight: 600;
+$h1-desktop-line-height: 105%;
+$h2-desktop-size: 60px;
+$h2-desktop-weight: 600;
+$h2-desktop-line-height: 125%;
+$h3-desktop-size: 24px;
+$h3-desktop-weight: 600;
+$h3-desktop-line-height: 125%;
+$text-desktop-size: 16px;
+$text-desktop-weight: 400;
+$text-desktop-line-height: 150%;
+$caption-desktop-size: 10px;
+$caption-desktop-weight: 600;
+$caption-desktop-line-height: 140%;
+$link-button-desktop-size: 16px;
+$link-button-desktop-weight: 600;
+$link-button-desktop-line-height: 150%;
+
+$link-button-tablet-size: 32px;
+$link-button-tablet-weight: 600;
+$link-button-tablet-line-height: 125%;
+
+$h1-mobile-size: 42px;
+$h1-mobile-weight: 600;
+$h1-mobile-line-height: 115%;
+$h2-mobile-size: 32px;
+$h2-mobile-weight: 600;
+$h2-mobile-line-height: 125%;
+
+
+:root {
+  --h1-size: #{$h1-desktop-size};
+  --h1-weight: #{$h1-desktop-weight};
+  --h1-line-height: #{$h1-desktop-line-height};
+  --h2-size: #{$h2-desktop-size};
+  --h2-weight: #{$h2-desktop-weight};
+  --h2-line-height: #{$h2-desktop-line-height};
+  --h3-size: #{$h3-desktop-size};
+  --h3-weight: #{$h3-desktop-weight};
+  --h3-line-height: #{$h3-desktop-line-height};
+  --text-size: #{$text-desktop-size};
+  --text-weight: #{$text-desktop-weight};
+  --text-line-height: #{$text-desktop-line-height};
+  --caption-size: #{$caption-desktop-size};
+  --caption-weight: #{$caption-desktop-weight};
+  --caption-line-height: #{$caption-desktop-line-height};
+  --link-button-size: #{$link-button-desktop-size};
+  --link-button-weight: #{$link-button-desktop-weight};
+  --link-button-line-height: #{$link-button-desktop-line-height};
+}
+
+@media (max-width: 640px) {
+  :root {
+    --h1-size: #{$h1-mobile-size};
+    --h1-weight: #{$h1-mobile-size};
+    --h1-line-height: #{$h1-mobile-line-height};
+    --h2-size: #{$h2-mobile-size};
+    --h2-weight: #{$h2-mobile-weight};
+    --h2-line-height: #{$h2-mobile-line-height};
+  }
+}
+
+@media (max-width: $mobile) {
+  :root {
+    --h1-size: #{$h1-mobile-size};
+    --h1-weight: #{$h1-mobile-weight};
+    --h1-line-height: #{$h1-mobile-line-height};
+    --h2-size: #{$h2-mobile-size};
+    --h2-weight: #{$h2-mobile-weight};
+    --h2-line-height: #{$h2-mobile-line-height};
+  }
+}
+
