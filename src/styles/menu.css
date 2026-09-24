@@ -77,6 +77,41 @@
     --h2-line-height: 125%;
   }
 }
+.tab-control {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 8px 8px;
+  background-color: transparent;
+  border: 1px solid var(--border-primary);
+  border-radius: 100px;
+  font-size: var(--link-button-size);
+  font-weight: var(--link-button-weight);
+  line-height: var(--link-button-line-height);
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.tab-control_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: var(--border-primary);
+  border-radius: 50%;
+  color: var(--text-primary);
+  transition: background-color 0.4s;
+}
+.tab-control.active, .tab-control:hover {
+  background-color: var(--bg-container);
+  color: var(--text-inverse);
+  border-color: var(--bg-container);
+}
+.tab-control.active .tab-control_icon, .tab-control:hover .tab-control_icon {
+  background-color: var(--bg-color);
+}
+
 #menu {
   display: flex;
   flex-direction: column;
@@ -102,38 +137,6 @@
   display: flex;
   align-items: center;
   gap: 16px;
-}
-#menu .tab-control {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px 8px 8px;
-  border: 1px solid var(--border-primary);
-  border-radius: 100px;
-  font-size: var(--link-button-size);
-  font-weight: var(--link-button-weight);
-  line-height: var(--link-button-line-height);
-  cursor: pointer;
-  transition: all 0.4s;
-}
-#menu .tab-control_emoji {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  background-color: var(--border-primary);
-  border-radius: 50%;
-  transition: background-color 0.4s;
-}
-#menu .tab-control.active, #menu .tab-control:hover {
-  background-color: var(--bg-container);
-  color: var(--text-inverse);
-  border-color: var(--bg-container);
-}
-#menu .tab-control.active .tab-control_emoji, #menu .tab-control:hover .tab-control_emoji {
-  background-color: var(--bg-color);
 }
 #menu .tab-container {
   display: flex;
