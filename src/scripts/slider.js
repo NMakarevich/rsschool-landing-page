@@ -98,6 +98,10 @@ function handleTransitionEnd() {
   disableSlider = false;
 }
 
+function handleScreenResize() {
+  slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
+}
+
 renderSlider();
 
 prevSlideButton.addEventListener('click', prevSlide);
@@ -105,3 +109,4 @@ nextSlideButton.addEventListener('click', nextSlide);
 markersContainer.addEventListener('click', selectSlide);
 slidesList.addEventListener('transitionstart', handleTransitionStart);
 slidesList.addEventListener('transitionend', handleTransitionEnd);
+window.addEventListener('resize', handleScreenResize);
