@@ -325,7 +325,7 @@
 
   {
     "name": "Ginger",
-    "image": "tea-1.jpg",
+    "image": "tea-2.jpg",
     "description": "Original black tea with fresh ginger, lemon and honey",
     "price": "5.00",
     "category": "tea",
@@ -361,7 +361,7 @@
 
   {
     "name": "Cranberry",
-    "image": "tea-1.jpg",
+    "image": "tea-3.jpg",
     "description": "Invigorating black tea with cranberry and honey",
     "price": "5.00",
     "category": "tea",
@@ -397,7 +397,7 @@
 
   {
     "name": "Sea buckthorn",
-    "image": "tea-1.jpg",
+    "image": "tea-4.jpg",
     "description": "Toning sweet black tea with sea buckthorn, fresh thyme and cinnamon",
     "price": "5.50",
     "category": "tea",
