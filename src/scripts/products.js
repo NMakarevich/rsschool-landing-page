@@ -28,6 +28,7 @@ function changeCategory(event) {
   selectedCategory = target.dataset.category;
   target.classList.add('active');
 
+  menuList.classList.remove('show-all');
   menuList.innerHTML = '';
   menuList.append(
     ...categories[selectedCategory].map((item) => new MenuItem(item, modal).render())
@@ -35,3 +36,8 @@ function changeCategory(event) {
 }
 
 tabControls.addEventListener('click', changeCategory);
+
+const loadMoreButton = document.querySelector('.load-more');
+loadMoreButton.addEventListener('click', () => {
+  menuList.classList.add('show-all');
+});

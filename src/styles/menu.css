@@ -299,6 +299,12 @@
   #menu .tab-container .menu-list_item:nth-child(n+5) {
     display: none;
   }
+  #menu .tab-container .menu-list.show-all .menu-list_item:nth-child(n+5) {
+    display: flex;
+  }
+  #menu .tab-container .menu-list.show-all + .load-more {
+    display: none;
+  }
   #menu .tab-container .load-more {
     display: flex;
   }
