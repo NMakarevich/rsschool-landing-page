@@ -1,6 +1,7 @@
+import { createElement } from './utils.js';
+
 function createModal(item) {
-  const modal = document.createElement('div');
-  modal.classList.add('modal');
+  const modal = createElement('div', 'modal');
   modal.innerHTML = `<div class="modal-overlay"></div>
         <div class="item">
           <div class="image-wrapper">

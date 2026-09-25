@@ -1,4 +1,5 @@
 import items from '../data/slides.json';
+import { createElement } from './utils.js';
 
 let currentSlide = 1;
 
@@ -7,8 +8,7 @@ const sliderInner = document.querySelector('.slider-inner');
 const markersContainer = document.querySelector('.slider-markers');
 
 function createSlideItem(item) {
-  const element = document.createElement('li');
-  element.classList.add('slides-list_item');
+  const element = createElement('li', 'slides-list_item');
   element.innerHTML = `<div class="slider-item">
                         <div class="slider-item_image image-wrapper">
                           <img src="./src/assets/images/slider/${item.image}" alt="item.name">
@@ -23,8 +23,7 @@ function createSlideItem(item) {
 }
 
 function createMarker(index) {
-  const marker = document.createElement('li');
-  marker.classList.add('slider-control', 'slider-marker');
+  const marker = createElement('li', 'slider-control', 'slider-marker');
   if (index === currentSlide) {
     marker.classList.add('active');
   }
