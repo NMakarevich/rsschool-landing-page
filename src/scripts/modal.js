@@ -1,4 +1,4 @@
-import { createElement } from './utils.js';
+import { createElement, disableScroll, enableScroll } from './utils.js';
 
 function createModal(item) {
   const modal = createElement('div', 'modal');
@@ -81,20 +81,4 @@ function openModal(item) {
   overlay.addEventListener('click', closeModal);
   closeButton.addEventListener('click', closeModal);
   document.addEventListener('keyup', closeModal);
-}
-
-function handleScroll(event) {
-  event.preventDefault();
-}
-
-function disableScroll() {
-  document.addEventListener('scroll', handleScroll, { passive: false });
-  document.addEventListener('wheel', handleScroll, { passive: false });
-  document.addEventListener('touchmove', handleScroll, { passive: false });
-}
-
-function enableScroll() {
-  document.removeEventListener('wheel', handleScroll);
-  document.removeEventListener('scroll', handleScroll);
-  document.removeEventListener('touchmove', handleScroll);
 }

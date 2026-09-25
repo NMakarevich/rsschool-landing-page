@@ -1,3 +1,5 @@
+import { disableScroll, enableScroll } from './utils.js';
+
 let isBurgerOpen = false;
 const burger = document.querySelector('.burger-menu');
 const nav = document.querySelector('.header-nav');
@@ -7,22 +9,6 @@ function closeBurger() {
   burger.classList.remove('open');
   nav.classList.remove('open');
   enableScroll();
-}
-
-function handleScroll(event) {
-  event.preventDefault();
-}
-
-function disableScroll() {
-  document.addEventListener('scroll', handleScroll, { passive: false });
-  document.addEventListener('wheel', handleScroll, { passive: false });
-  document.addEventListener('touchmove', handleScroll, { passive: false });
-}
-
-function enableScroll() {
-  document.removeEventListener('wheel', handleScroll);
-  document.removeEventListener('scroll', handleScroll);
-  document.removeEventListener('touchmove', handleScroll);
 }
 
 burger.addEventListener('click', () => {
