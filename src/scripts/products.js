@@ -6,10 +6,10 @@ const modal = new Modal();
 const categories = {};
 
 for (let product of products) {
-  if (categories[product.category]) {
-    categories[product.category].push(product);
+  if (categories[product['category']]) {
+    categories[product['category']].push(product);
   } else {
-    categories[product.category] = [product];
+    categories[product['category']] = [product];
   }
 }
 
