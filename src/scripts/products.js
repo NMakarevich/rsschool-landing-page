@@ -17,7 +17,7 @@ let selectedCategory = Object.keys(categories)[0];
 const tabControls = document.querySelector('.tabs-controls');
 const menuList = document.querySelector('.menu-list');
 
-menuList.append(...categories[selectedCategory].map((item) => new MenuItem(item, modal).render()));
+categories[selectedCategory].forEach((item) => new MenuItem(item, modal).render());
 
 function changeCategory(event) {
   const { target } = event;
@@ -30,9 +30,7 @@ function changeCategory(event) {
 
   menuList.classList.remove('show-all');
   menuList.innerHTML = '';
-  menuList.append(
-    ...categories[selectedCategory].map((item) => new MenuItem(item, modal).render())
-  );
+  categories[selectedCategory].forEach((item) => new MenuItem(item, modal).render());
 }
 
 tabControls.addEventListener('click', changeCategory);
