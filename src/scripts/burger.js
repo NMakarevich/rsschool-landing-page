@@ -1,5 +1,7 @@
 import { disableScroll, enableScroll } from './utils.js';
 
+const TABLET_SIZE = 768;
+
 let isBurgerOpen = false;
 const burger = document.querySelector('.burger-menu');
 const nav = document.querySelector('.header-nav');
@@ -37,7 +39,7 @@ document.addEventListener('keyup', (event) => {
 });
 
 window.addEventListener('resize', () => {
-  if (document.body.offsetWidth >= 769) {
+  if (document.body.offsetWidth > TABLET_SIZE) {
     nav.classList.remove('transition');
     closeBurger();
   }
