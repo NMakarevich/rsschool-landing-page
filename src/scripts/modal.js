@@ -1,18 +1,17 @@
 import { createElement, disableScroll, enableScroll } from './utils.js';
 
 export class Modal {
-  overlay = null;
-  closeButton = null;
   modal = null;
-
-  constructor() {}
+  selectedSize = null;
+  selectedAdditives = [];
+  product = null;
 
   createToggleGroupItem(iconValue, value, isActive = false) {
     return `<li class="item-toggle-group_item">
-            <button type="button" class="button tab-control ${isActive ? 'active' : ''}" data-value="${iconValue}">
-              <span class="tab-control_icon">${typeof iconValue === 'string' ? iconValue.toUpperCase() : iconValue}</span> ${value}
-            </button>
-          </li>`;
+              <button type="button" class="button tab-control ${isActive ? 'active' : ''}" data-value="${iconValue}">
+                <span class="tab-control_icon">${typeof iconValue === 'string' ? iconValue.toUpperCase() : iconValue}</span> ${value}
+              </button>
+            </li>`;
   }
 
   getAdditivesItems(items) {
@@ -52,7 +51,7 @@ export class Modal {
             </div>
             <div class="item-total-price">
               <h3 class="item-total-price_title">Total:</h3>
-              <h3 class="item-total-price_price"></h3>
+              <h3 class="item-total-price_price">$${item.price}</h3>
             </div>
             <div class="item-alert">
             <span class="item-alert_icon">
@@ -80,23 +79,67 @@ export class Modal {
       enableScroll();
       this.modal.remove();
       this.modal = null;
-      this.closeButton = null;
-      this.overlay = null;
+      this.selectedSize = null;
+      this.selectedAdditives = [];
+      this.product = null;
     }
   };
 
+  updatePrice = () => {
+    const price =
+      Number(this.product['price']) +
+      Number(this.product['sizes'][this.selectedSize]['add-price']) +
+      this.selectedAdditives.reduce(
+        (sum, curr) => sum + Number(this.product['additives'][Number(curr) - 1]['add-price']),
+        0
+      );
+    this.modal.querySelector('.item-total-price_price').textContent = `$${price.toFixed(2)}`;
+  };
+
+  handleSelectSize = (event) => {
+    const { target } = event;
+    if (target.tagName !== 'BUTTON') return;
+
+    this.modal.querySelector(`[data-value="${this.selectedSize}"]`).classList.remove('active');
+    this.selectedSize = target.dataset['value'];
+    target.classList.add('active');
+    this.updatePrice();
+  };
+
+  handleAdditivesChange = (event) => {
+    const { target } = event;
+    if (target.tagName !== 'BUTTON') return;
+
+    if (target.classList.contains('active')) {
+      target.classList.remove('active');
+      this.selectedAdditives = this.selectedAdditives.filter(
+        (index) => index !== target.dataset['value']
+      );
+    } else {
+      target.classList.add('active');
+      this.selectedAdditives.push(target.dataset['value']);
+    }
+    this.updatePrice();
+  };
+
   eventListeners = () => {
-    if (this.overlay) this.overlay.addEventListener('click', this.closeModal);
-    if (this.closeButton) this.closeButton.addEventListener('click', this.closeModal);
+    this.modal.querySelector('.modal-overlay').addEventListener('click', this.closeModal);
+    this.modal.querySelector('.modal-close').addEventListener('click', this.closeModal);
+    this.modal
+      .querySelector('.item-toggle-group.size')
+      .addEventListener('click', this.handleSelectSize);
+    this.modal
+      .querySelector('.item-toggle-group.additives')
+      .addEventListener('click', this.handleAdditivesChange);
     document.addEventListener('keyup', this.closeModal);
   };
 
   openModal(item) {
+    this.product = item;
     this.modal = this.createModal(item);
+    this.selectedSize = Object.keys(this.product['sizes'])[0];
     document.body.appendChild(this.modal);
     disableScroll();
-    this.overlay = this.modal.querySelector('.modal-overlay');
-    this.closeButton = this.modal.querySelector('.modal-close');
 
     this.eventListeners();
   }
