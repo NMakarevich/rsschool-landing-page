@@ -1,4 +1,4 @@
-import products from '../data/products.json';
+import products from '../data/products.json' with { type: 'json' };
 import { MenuItem } from './menuItem.js';
 import { Modal } from './modal.js';
 
