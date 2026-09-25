@@ -4,7 +4,7 @@ export class MenuItem {
   constructor(item, modal) {
     this.item = item;
     this.modal = modal;
-    this.element = createElement('li', ['menu-list_item', 'item']);
+    this.element = createElement('li', 'menu-list_item', 'item');
 
     this.eventListeners();
   }
@@ -18,7 +18,7 @@ export class MenuItem {
                     <p class="item-info_description">
                       ${this.item.description}
                     </p>
-                    <h3 class="item-info_price">${this.item.price}</h3>
+                    <h3 class="item-info_price">$${this.item.price}</h3>
                   </div>`;
     return this.element;
   }
