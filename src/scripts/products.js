@@ -3,15 +3,14 @@ import { MenuItem } from './menuItem.js';
 import { Modal } from './modal.js';
 
 const modal = new Modal();
-const categories = {};
-
-for (let product of products) {
-  if (categories[product['category']]) {
-    categories[product['category']].push(product);
+const categories = products.reduce((acc, product) => {
+  if (acc[product['category']]) {
+    acc[product['category']].push(product);
   } else {
-    categories[product['category']] = [product];
+    acc[product['category']] = [product];
   }
-}
+  return acc;
+}, {});
 
 let selectedCategory = Object.keys(categories)[0];
 
