@@ -749,6 +749,16 @@ body {
 }
 
 @media (max-width: 640px) {
+  .header-section.menu {
+    .header-nav {
+      padding: 60px 16px;
+
+      &_list {
+        gap: 60px;
+      }
+    }
+  }
+
   .hero-content {
     padding: 32px;
   }
@@ -773,14 +783,6 @@ body {
   }
 
   .header-section.menu {
-    .header-nav {
-      padding: 60px 16px;
-
-      &_list {
-        gap: 60px;
-      }
-    }
-
     .link-menu {
       display: flex;
       gap: 16px;
