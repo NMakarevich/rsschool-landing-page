@@ -155,13 +155,22 @@
     background-color: var(--bg-overlay);
   }
 
+  .tab-control:hover,
+  .tab-control.active {
+    background-color: var(--bg-modal-control-hover);
+
+    .tab-control_icon {
+      background-color: var(--bg-modal);
+    }
+  }
+
   .item {
     display: flex;
     gap: 20px;
     max-width: 800px;
     width: 100%;
     padding: 16px;
-    background-color: var(--bg-color);
+    background-color: var(--bg-modal);
     border-radius: 40px;
     z-index: 200;
 
@@ -227,6 +236,10 @@
       font-size: var(--link-button-size);
       font-weight: var(--link-button-weight);
       line-height: var(--link-button-line-height);
+
+      &:hover {
+        background-color: var(--bg-modal-control-hover);
+      }
     }
   }
 }

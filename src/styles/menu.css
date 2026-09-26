@@ -16,6 +16,8 @@
   --bg-color: #E1D4C9;
   --bg-container: #665F55;
   --bg-overlay: rgba(64, 63, 61, 0.8);
+  --bg-modal: #E1D4C9;
+  --bg-modal-control-hover: #665F55;
   --text-primary: #403F3D;
   --text-accent: #B0907A;
   --text-inverse: #E1D4C9;
@@ -28,6 +30,8 @@
   --bg-color: #292826;
   --bg-container: #403F3D;
   --bg-overlay: rgba(41, 40, 38, 0.8);
+  --bg-modal: #403F3D;
+  --bg-modal-control-hover: #292826;
   --text-primary: #E1D4C9;
   --text-accent: #B0907A;
   --text-inverse: #E1D4C9;
@@ -217,13 +221,21 @@
   height: 100%;
   background-color: var(--bg-overlay);
 }
+.modal .tab-control:hover,
+.modal .tab-control.active {
+  background-color: var(--bg-modal-control-hover);
+}
+.modal .tab-control:hover .tab-control_icon,
+.modal .tab-control.active .tab-control_icon {
+  background-color: var(--bg-modal);
+}
 .modal .item {
   display: flex;
   gap: 20px;
   max-width: 800px;
   width: 100%;
   padding: 16px;
-  background-color: var(--bg-color);
+  background-color: var(--bg-modal);
   border-radius: 40px;
   z-index: 200;
 }
@@ -281,6 +293,9 @@
   font-size: var(--link-button-size);
   font-weight: var(--link-button-weight);
   line-height: var(--link-button-line-height);
+}
+.modal .item .button.modal-close:hover {
+  background-color: var(--bg-modal-control-hover);
 }
 
 @media (max-width: 1200px) {
