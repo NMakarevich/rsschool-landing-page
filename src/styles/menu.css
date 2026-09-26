@@ -320,9 +320,10 @@
     grid-template-columns: 1fr;
   }
 }
-@media (max-width: 380px) {
+@media (max-width: 640px) {
   .modal {
     padding: 19px;
+    flex-direction: column;
   }
   .modal .item .image-wrapper {
     display: none;

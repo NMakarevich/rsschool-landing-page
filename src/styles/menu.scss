@@ -292,11 +292,13 @@
       }
     }
   }
+
 }
 
-@media (max-width: $mobile) {
+@media (max-width: 640px) {
   .modal {
     padding: 19px;
+    flex-direction: column;
 
     .item .image-wrapper {
       display: none;
