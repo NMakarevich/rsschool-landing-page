@@ -1,6 +1,8 @@
 import items from '../data/slides.json' with { type: 'json' };
 import { createElement } from './utils.js';
 
+const MIN_TOUCH_MOVE = 200;
+
 let currentSlide = 1;
 
 const slidesList = document.querySelector('.slides-list');
@@ -79,6 +81,30 @@ function selectSlide(event) {
   slidesList.classList.add('transition');
   slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
 }
+
+function handleTouchStart(event) {
+  event.preventDefault();
+
+  const { changedTouches } = event;
+  const startX = changedTouches[0].clientX;
+
+  function handleTouchEnd(event) {
+    event.preventDefault();
+
+    const { changedTouches } = event;
+    const endX = changedTouches[0].clientX;
+
+    if (Math.abs(endX - startX) > MIN_TOUCH_MOVE && endX - startX < 0) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+  }
+
+  sliderInner.addEventListener('touchend', handleTouchEnd);
+}
+
+sliderInner.addEventListener('touchstart', handleTouchStart);
 
 function handleTransitionStart() {
   const index =
