@@ -89,10 +89,6 @@ function handleTouchStart(event) {
 
   const { changedTouches } = event;
   startX = changedTouches[0].clientX;
-
-  sliderInner.addEventListener('touchmove', (event) => {
-    event.preventDefault();
-  });
 }
 
 function handleTouchEnd(event) {
