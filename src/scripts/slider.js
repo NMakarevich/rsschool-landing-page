@@ -1,4 +1,4 @@
-import items from '../data/slides.json';
+import items from '../data/slides.json' with { type: 'json' };
 import { createElement } from './utils.js';
 
 let currentSlide = 1;
