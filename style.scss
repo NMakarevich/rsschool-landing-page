@@ -105,18 +105,13 @@ body {
   }
 }
 
-.button-secondary {
-  flex-shrink: 0;
+.button {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  height: 60px;
   background-color: transparent;
-  border: 1px solid var(--border-inverse);
-  border-radius: 50%;
-  color: var(--text-primary);
-  transition: all 0.4s;
+  border: 100px;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
 
   &:hover {
@@ -124,6 +119,19 @@ body {
     color: var(--text-inverse);
     border-color: var(--bg-container);
   }
+}
+
+.button-secondary {
+  flex-shrink: 0;
+  border: 1px solid var(--border-inverse);
+  border-radius: 50%;
+  color: var(--text-primary);
+  transition: all 0.4s;
+}
+
+.button-icon {
+  width: 60px;
+  height: 60px;
 }
 
 .header .container {
@@ -338,11 +346,16 @@ body {
     }
 
     .slides-list {
-      width: 100%;
+      display: flex;
 
       &_item {
         display: flex;
         justify-content: center;
+        width: 100%;
+      }
+
+      &.transition {
+        transition: transform 0.4s;
       }
     }
 
@@ -387,8 +400,10 @@ body {
       height: 4px;
       background-color: var(--border-primary);
       cursor: pointer;
+      transition: background-color 0.4s;
 
-      &.active {
+      &.active,
+      &:hover {
         background-color: var(--bg-container);
       }
     }
@@ -598,10 +613,13 @@ body {
     z-index: 100;
     background-color: var(--bg-color);
     transform: translateX(-1000px);
-    transition: transform 0.4s;
 
     &.open {
       transform: translateX(0);
+    }
+
+    &.transition {
+      transition: transform 0.4s;
     }
 
     &_list {
@@ -731,6 +749,16 @@ body {
 }
 
 @media (max-width: 640px) {
+  .header-section.menu {
+    .header-nav {
+      padding: 60px 16px;
+
+      &_list {
+        gap: 60px;
+      }
+    }
+  }
+
   .hero-content {
     padding: 32px;
   }
@@ -755,14 +783,6 @@ body {
   }
 
   .header-section.menu {
-    .header-nav {
-      padding: 60px 16px;
-
-      &_list {
-        gap: 60px;
-      }
-    }
-
     .link-menu {
       display: flex;
       gap: 16px;
