@@ -1,7 +1,7 @@
 import items from '../data/slides.json' with { type: 'json' };
 import { createElement } from './utils.js';
 
-const MIN_TOUCH_MOVE = 200;
+const MIN_TOUCH_MOVE = 100;
 
 let currentSlide = 1;
 
@@ -82,29 +82,36 @@ function selectSlide(event) {
   slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
 }
 
+let startX = null;
+
 function handleTouchStart(event) {
   event.preventDefault();
 
   const { changedTouches } = event;
-  const startX = changedTouches[0].clientX;
+  startX = changedTouches[0].clientX;
 
-  function handleTouchEnd(event) {
+  sliderInner.addEventListener('touchmove', (event) => {
     event.preventDefault();
+  });
+}
 
-    const { changedTouches } = event;
-    const endX = changedTouches[0].clientX;
+function handleTouchEnd(event) {
+  event.preventDefault();
 
-    if (Math.abs(endX - startX) > MIN_TOUCH_MOVE && endX - startX < 0) {
-      nextSlide();
-    } else {
-      prevSlide();
-    }
+  const { changedTouches } = event;
+  const endX = changedTouches[0].clientX;
+
+  if (Math.abs(endX - startX) < MIN_TOUCH_MOVE) return;
+
+  if (endX - startX < 0) {
+    nextSlide();
+  } else {
+    prevSlide();
   }
-
-  sliderInner.addEventListener('touchend', handleTouchEnd);
 }
 
 sliderInner.addEventListener('touchstart', handleTouchStart);
+sliderInner.addEventListener('touchend', handleTouchEnd);
 
 function handleTransitionStart() {
   const index =
