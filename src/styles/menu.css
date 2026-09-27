@@ -213,6 +213,11 @@
   bottom: 0;
   padding: 0 20px;
   z-index: 100;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.modal.open {
+  opacity: 1;
 }
 .modal-overlay {
   display: block;

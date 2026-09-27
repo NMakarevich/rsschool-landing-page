@@ -77,11 +77,14 @@ class Modal {
   closeModal = (event) => {
     if ((event.type === 'keyup' && event.key === 'Escape') || event.type === 'click') {
       enableScroll();
-      this.modal.remove();
-      this.modal = null;
-      this.selectedSize = null;
-      this.selectedAdditives = [];
-      this.product = null;
+      this.modal.classList.remove('open');
+      this.modal.addEventListener('transitionend', () => {
+        this.modal.remove();
+        this.modal = null;
+        this.selectedSize = null;
+        this.selectedAdditives = [];
+        this.product = null;
+      });
     }
   };
 
@@ -139,8 +142,10 @@ class Modal {
     this.modal = this.createModal(item);
     this.selectedSize = Object.keys(this.product['sizes'])[0];
     document.body.appendChild(this.modal);
+    setTimeout(() => {
+      this.modal.classList.add('open');
+    }, 0);
     disableScroll();
-
     this.eventListeners();
   }
 }
