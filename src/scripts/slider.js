@@ -119,15 +119,11 @@ class Slider {
     let startX = null;
 
     const handleTouchStart = (event) => {
-      event.preventDefault();
-
       const { changedTouches } = event;
       startX = changedTouches[0].clientX;
     };
 
     const handleTouchEnd = (event) => {
-      event.preventDefault();
-
       const { changedTouches } = event;
       const endX = changedTouches[0].clientX;
 
