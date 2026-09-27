@@ -1,17 +1,36 @@
-import items from '../data/slides.json' with { type: 'json' };
+import slides from '../data/slides.json' with { type: 'json' };
 import { createElement } from './utils.js';
 
 const MIN_TOUCH_MOVE = 100;
 
-let currentSlide = 1;
+class Slider {
+  currentSlide = 1;
+  container = document.querySelector('.slider');
+  sliderInner = this.container.querySelector('.slider-inner');
+  slidesList = this.container.querySelector('.slides-list');
+  sliderMarkersContainer = this.container.querySelector('.slider-markers');
+  prevButton = this.container.querySelector('.slider_control.prev');
+  nextButton = this.container.querySelector('.slider_control.next');
+  slides = slides;
+  disableSlider = false;
 
-const slidesList = document.querySelector('.slides-list');
-const sliderInner = document.querySelector('.slider-inner');
-const markersContainer = document.querySelector('.slider-markers');
+  render() {
+    this.sliderMarkersContainer.append(...this.createMarkers());
+    const slidesElements = [
+      this.slides[this.slides.length - 1],
+      ...this.slides,
+      this.slides[0],
+    ].map((slide) => this.createSlide(slide));
+    this.slidesList.append(...slidesElements);
+    this.slidesList.style.width = `${slidesElements.length * 100}%`;
+    this.slidesList.style.transform = `translateX(-${this.sliderInner.offsetWidth * this.currentSlide}px)`;
 
-function createSlideItem(item) {
-  const element = createElement('li', 'slides-list_item');
-  element.innerHTML = `<div class="slider-item">
+    this.eventListeners();
+  }
+
+  createSlide(item) {
+    const element = createElement('li', 'slides-list_item');
+    element.innerHTML = `<div class="slider-item">
                         <div class="slider-item_image image-wrapper">
                           <img src="./src/assets/images/slider/${item.image}" alt="item.name">
                         </div>
@@ -21,120 +40,120 @@ function createSlideItem(item) {
                           <h3 class="slider-item_price">${item.price}</h3>
                         </div>
                       </div>`;
-  return element;
-}
-
-function createMarker(index) {
-  const marker = createElement('li', 'slider-control', 'slider-marker');
-  if (index === currentSlide) {
-    marker.classList.add('active');
+    return element;
   }
-  marker.dataset.slide = index;
-  return marker;
-}
 
-function renderSlider() {
-  const slides = [items[items.length - 1], ...items, items[0]];
-  slidesList.style.width = `${slides.length * 100}%`;
-  slidesList.append(...slides.map((slide) => createSlideItem(slide)));
-  slidesList.style.transform = `translateX(-${sliderInner.offsetWidth * currentSlide}px)`;
-
-  for (let i = 1; i <= items.length; i++) {
-    markersContainer.appendChild(createMarker(i));
+  createMarkers() {
+    const markers = Array(this.slides.length).fill(null);
+    return markers.map((_, index) => {
+      const marker = createElement('li', 'slider-control', 'slider-marker');
+      if (index + 1 === this.currentSlide) {
+        marker.classList.add('active');
+      }
+      marker.dataset.slide = String(index + 1);
+      return marker;
+    });
   }
-}
 
-const prevSlideButton = document.querySelector('.slider_control.prev');
-const nextSlideButton = document.querySelector('.slider_control.next');
+  prevSlide = () => {
+    if (this.disableSlider) return;
+    this.disableSlider = true;
+    this.deleteActiveClass();
+    this.currentSlide -= 1;
+    this.slidesList.classList.add('transition');
+    this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
+  };
 
-let disableSlider = false;
+  nextSlide = () => {
+    if (this.disableSlider) return;
+    this.disableSlider = true;
+    this.deleteActiveClass();
+    this.currentSlide += 1;
+    this.slidesList.classList.add('transition');
+    this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
+  };
 
-function prevSlide() {
-  if (disableSlider) return;
-  disableSlider = true;
-  deleteActiveClass();
-  currentSlide -= 1;
-  slidesList.classList.add('transition');
-  slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
-}
-
-function nextSlide() {
-  if (disableSlider) return;
-  disableSlider = true;
-  deleteActiveClass();
-  currentSlide += 1;
-  slidesList.classList.add('transition');
-  slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
-}
-
-function deleteActiveClass() {
-  markersContainer.querySelector(`[data-slide="${currentSlide}"]`).classList.remove('active');
-}
-
-function selectSlide(event) {
-  const { target } = event;
-  if (target.tagName !== 'LI') return;
-
-  disableSlider = true;
-  deleteActiveClass();
-  currentSlide = Number(target.dataset.slide);
-  slidesList.classList.add('transition');
-  slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
-}
-
-let startX = null;
-
-function handleTouchStart(event) {
-  event.preventDefault();
-
-  const { changedTouches } = event;
-  startX = changedTouches[0].clientX;
-}
-
-function handleTouchEnd(event) {
-  event.preventDefault();
-
-  const { changedTouches } = event;
-  const endX = changedTouches[0].clientX;
-
-  if (Math.abs(endX - startX) < MIN_TOUCH_MOVE) return;
-
-  if (endX - startX < 0) {
-    nextSlide();
-  } else {
-    prevSlide();
+  deleteActiveClass() {
+    this.sliderMarkersContainer
+      .querySelector(`[data-slide="${this.currentSlide}"]`)
+      .classList.remove('active');
   }
+
+  selectSlide = (event) => {
+    const { target } = event;
+    if (target.tagName !== 'LI') return;
+
+    this.disableSlider = true;
+    this.deleteActiveClass();
+    this.currentSlide = Number(target.dataset.slide);
+    this.slidesList.classList.add('transition');
+    this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
+  };
+
+  handleTransitionStart = () => {
+    const index =
+      this.currentSlide === 0
+        ? this.slides.length
+        : this.currentSlide === this.slides.length + 1
+          ? 1
+          : this.currentSlide;
+    this.sliderMarkersContainer.querySelector(`[data-slide="${index}"]`).classList.add('active');
+  };
+
+  handleTransitionEnd = () => {
+    this.slidesList.classList.remove('transition');
+    if (this.currentSlide === 0) {
+      this.currentSlide = this.slides.length;
+    } else if (this.currentSlide === this.slides.length + 1) {
+      this.currentSlide = 1;
+    }
+    this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
+    this.disableSlider = false;
+  };
+
+  handleScreenResize = () => {
+    this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
+  };
+
+  sliderSwipeEvent = () => {
+    let startX = null;
+
+    const handleTouchStart = (event) => {
+      event.preventDefault();
+
+      const { changedTouches } = event;
+      startX = changedTouches[0].clientX;
+    };
+
+    const handleTouchEnd = (event) => {
+      event.preventDefault();
+
+      const { changedTouches } = event;
+      const endX = changedTouches[0].clientX;
+
+      if (Math.abs(endX - startX) < MIN_TOUCH_MOVE) return;
+
+      if (endX - startX < 0) {
+        this.nextSlide();
+      } else {
+        this.prevSlide();
+      }
+    };
+
+    this.sliderInner.addEventListener('touchstart', handleTouchStart);
+    this.sliderInner.addEventListener('touchend', handleTouchEnd);
+  };
+
+  eventListeners = () => {
+    this.prevButton.addEventListener('click', this.prevSlide);
+    this.nextButton.addEventListener('click', this.nextSlide);
+    this.sliderMarkersContainer.addEventListener('click', this.selectSlide);
+    this.sliderSwipeEvent();
+    this.slidesList.addEventListener('transitionstart', this.handleTransitionStart);
+    this.slidesList.addEventListener('transitionend', this.handleTransitionEnd);
+    window.addEventListener('resize', this.handleScreenResize);
+  };
 }
 
-sliderInner.addEventListener('touchstart', handleTouchStart);
-sliderInner.addEventListener('touchend', handleTouchEnd);
-
-function handleTransitionStart() {
-  const index =
-    currentSlide === 0 ? items.length : currentSlide === items.length + 1 ? 1 : currentSlide;
-  markersContainer.querySelector(`[data-slide="${index}"]`).classList.add('active');
-}
-
-function handleTransitionEnd() {
-  slidesList.classList.remove('transition');
-  if (currentSlide === 0) {
-    currentSlide = items.length;
-  } else if (currentSlide === items.length + 1) {
-    currentSlide = 1;
-  }
-  slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
-  disableSlider = false;
-}
-
-function handleScreenResize() {
-  slidesList.style.transform = `translateX(-${currentSlide * sliderInner.offsetWidth}px)`;
-}
-
-renderSlider();
-
-prevSlideButton.addEventListener('click', prevSlide);
-nextSlideButton.addEventListener('click', nextSlide);
-markersContainer.addEventListener('click', selectSlide);
-slidesList.addEventListener('transitionstart', handleTransitionStart);
-slidesList.addEventListener('transitionend', handleTransitionEnd);
-window.addEventListener('resize', handleScreenResize);
+const slider = new Slider();
+slider.render();
