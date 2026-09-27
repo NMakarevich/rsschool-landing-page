@@ -1,6 +1,6 @@
 import { createElement, disableScroll, enableScroll } from './utils.js';
 
-export class Modal {
+class Modal {
   modal = null;
   selectedSize = null;
   selectedAdditives = [];
@@ -144,3 +144,6 @@ export class Modal {
     this.eventListeners();
   }
 }
+
+const modal = new Modal();
+export default modal;

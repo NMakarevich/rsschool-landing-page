@@ -1,6 +1,5 @@
 import products from '../data/products.json' with { type: 'json' };
 import { MenuItem } from './menuItem.js';
-import { Modal } from './modal.js';
 
 const MIN_CATEGORY_SIZE_FOR_LOAD_MORE = 5;
 
@@ -12,10 +11,6 @@ class Products {
   tabControls = document.querySelector('.tabs-controls');
   menuList = document.querySelector('.menu-list');
   loadMoreButton = document.querySelector('.load-more');
-
-  constructor() {
-    this.modal = new Modal();
-  }
 
   init = () => {
     this.setLoadMoreButtonStyle();
@@ -47,8 +42,8 @@ class Products {
   }
 
   renderCategoryItems() {
-    this.categories[this.getCurrentCategory()].forEach((item) =>
-      new MenuItem(item, this.modal).render()
+    this.menuList.append(
+      ...this.categories[this.getCurrentCategory()].map((item) => new MenuItem(item).render())
     );
   }
 

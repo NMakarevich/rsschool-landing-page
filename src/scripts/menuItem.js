@@ -1,10 +1,10 @@
 import { createElement } from './utils.js';
+import modal from './modal.js';
 
 export class MenuItem {
-  constructor(item, modal) {
+  constructor(item) {
     this.item = item;
     this.modal = modal;
-    this.container = document.querySelector('.menu-list');
     this.element = createElement('li', 'menu-list_item', 'item');
     this.eventListeners();
   }
@@ -20,7 +20,7 @@ export class MenuItem {
                     </p>
                     <h3 class="item-info_price">$${this.item.price}</h3>
                   </div>`;
-    this.container.appendChild(this.element);
+    return this.element;
   }
 
   handleClick = () => {
