@@ -2,6 +2,10 @@ import slides from '../data/slides.json' with { type: 'json' };
 import { createElement } from './utils.js';
 
 const MIN_TOUCH_MOVE = 100;
+const DIRECTION = {
+  next: 1,
+  prev: -1,
+};
 
 class Slider {
   currentSlide = 1;
@@ -55,22 +59,21 @@ class Slider {
     });
   }
 
-  prevSlide = () => {
+  changeSlide = (index) => {
     if (this.disableSlider) return;
     this.disableSlider = true;
     this.deleteActiveClass();
-    this.currentSlide -= 1;
+    this.currentSlide = index;
     this.slidesList.classList.add('transition');
     this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
   };
 
+  prevSlide = () => {
+    this.changeSlide(this.currentSlide + DIRECTION.prev);
+  };
+
   nextSlide = () => {
-    if (this.disableSlider) return;
-    this.disableSlider = true;
-    this.deleteActiveClass();
-    this.currentSlide += 1;
-    this.slidesList.classList.add('transition');
-    this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
+    this.changeSlide(this.currentSlide + DIRECTION.next);
   };
 
   deleteActiveClass() {
@@ -83,30 +86,28 @@ class Slider {
     const { target } = event;
     if (target.tagName !== 'LI') return;
 
-    this.disableSlider = true;
-    this.deleteActiveClass();
-    this.currentSlide = Number(target.dataset.slide);
-    this.slidesList.classList.add('transition');
-    this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
+    this.changeSlide(Number(target.dataset.slide));
   };
 
-  handleTransitionStart = () => {
-    const index =
+  updateCurrentSlide = () => {
+    this.currentSlide =
       this.currentSlide === 0
         ? this.slides.length
         : this.currentSlide === this.slides.length + 1
           ? 1
           : this.currentSlide;
-    this.sliderMarkersContainer.querySelector(`[data-slide="${index}"]`).classList.add('active');
+  };
+
+  handleTransitionStart = () => {
+    this.updateCurrentSlide();
+    this.sliderMarkersContainer
+      .querySelector(`[data-slide="${this.currentSlide}"]`)
+      .classList.add('active');
   };
 
   handleTransitionEnd = () => {
     this.slidesList.classList.remove('transition');
-    if (this.currentSlide === 0) {
-      this.currentSlide = this.slides.length;
-    } else if (this.currentSlide === this.slides.length + 1) {
-      this.currentSlide = 1;
-    }
+    this.updateCurrentSlide();
     this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
     this.disableSlider = false;
   };
