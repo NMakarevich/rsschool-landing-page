@@ -26,8 +26,7 @@ class Slider {
       this.slides[0],
     ].map((slide) => this.createSlide(slide));
     this.slidesList.append(...slidesElements);
-    this.slidesList.style.width = `${slidesElements.length * 100}%`;
-    this.slidesList.style.transform = `translateX(-${this.sliderInner.offsetWidth * this.currentSlide}px)`;
+    this.slidesList.style.transform = `translateX(-${this.currentSlide * 100}%)`;
 
     this.eventListeners();
   }
@@ -65,7 +64,7 @@ class Slider {
     this.deleteActiveClass();
     this.currentSlide = index;
     this.slidesList.classList.add('transition');
-    this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
+    this.slidesList.style.transform = `translateX(-${this.currentSlide * 100}%)`;
   };
 
   prevSlide = () => {
@@ -108,12 +107,8 @@ class Slider {
   handleTransitionEnd = () => {
     this.slidesList.classList.remove('transition');
     this.updateCurrentSlide();
-    this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
+    this.slidesList.style.transform = `translateX(-${this.currentSlide * 100}%)`;
     this.disableSlider = false;
-  };
-
-  handleScreenResize = () => {
-    this.slidesList.style.transform = `translateX(-${this.currentSlide * this.sliderInner.offsetWidth}px)`;
   };
 
   sliderSwipeEvent = () => {
@@ -148,7 +143,6 @@ class Slider {
     this.sliderSwipeEvent();
     this.slidesList.addEventListener('transitionstart', this.handleTransitionStart);
     this.slidesList.addEventListener('transitionend', this.handleTransitionEnd);
-    window.addEventListener('resize', this.handleScreenResize);
   };
 }
 
