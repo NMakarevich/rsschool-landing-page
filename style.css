@@ -15,7 +15,7 @@
 :root {
   --bg-color: #E1D4C9;
   --bg-container: #665F55;
-  --bg-overlay: rgba(64, 63, 61, 0.8);
+  --bg-overlay: #403F3DCC;
   --bg-modal: #E1D4C9;
   --bg-modal-control-hover: #665F55;
   --text-primary: #403F3D;
@@ -29,7 +29,7 @@
 .dark {
   --bg-color: #292826;
   --bg-container: #403F3D;
-  --bg-overlay: rgba(41, 40, 38, 0.8);
+  --bg-overlay: #292826CC;
   --bg-modal: #403F3D;
   --bg-modal-control-hover: #292826;
   --text-primary: #E1D4C9;
@@ -402,6 +402,7 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
+  flex-shrink: 0;
 }
 #favourites .slider .slides-list.transition {
   transition: transform 0.4s;
@@ -591,6 +592,7 @@ body {
   .header-nav_list {
     gap: 12px;
   }
+
   .header-actions {
     gap: 12px;
   }
@@ -599,6 +601,7 @@ body {
   .header-section.menu {
     position: relative;
   }
+
   .header-nav {
     position: fixed;
     top: 80px;
@@ -647,9 +650,11 @@ body {
     font-size: 32px;
     line-height: 125%;
   }
+
   .header-actions {
     gap: 24px;
   }
+
   .menu-container .link {
     display: none;
   }
@@ -688,15 +693,18 @@ body {
   .menu-container .burger-menu.open::after {
     transform: translateY(0) rotate(-45deg);
   }
+
   .hero-content {
     padding: 100px 60px;
   }
   .hero-content .link-icon_wrapper {
     opacity: 1;
   }
+
   #favourites .slider-item {
     max-width: 488px;
   }
+
   #about .gallery {
     grid-template-columns: 1fr;
   }
@@ -706,10 +714,12 @@ body {
   #about .gallery .column:last-child .image-wrapper:not(:nth-child(2n)) {
     display: none;
   }
+
   #app {
     flex-direction: column;
     gap: 100px;
   }
+
   #contact {
     padding: 100px 60px;
     flex-direction: column;
@@ -723,12 +733,15 @@ body {
   .header-section.menu .header-nav_list {
     gap: 60px;
   }
+
   .hero-content {
     padding: 32px;
   }
+
   #favourites .slider_control {
     display: none;
   }
+
   #contact {
     padding: 60px 16px;
     gap: 40px;
@@ -738,6 +751,7 @@ body {
   .container {
     padding: 0 16px;
   }
+
   .header-section.menu .link-menu {
     display: flex;
     gap: 16px;
@@ -756,10 +770,12 @@ body {
   .header-section.menu .header-actions {
     gap: 12px;
   }
+
   .hero-content {
     padding: 60px 16px;
     height: 552px;
   }
+
   #favourites .slider .slider-item {
     max-width: 348px;
   }
@@ -775,6 +791,7 @@ body {
     align-items: center;
     gap: 16px;
   }
+
   #app {
     gap: 40px;
   }
